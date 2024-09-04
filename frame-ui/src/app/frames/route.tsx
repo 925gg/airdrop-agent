@@ -1,22 +1,38 @@
 /* eslint-disable react/jsx-key */
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
+import { TopicEnum } from "./constants";
 
 const handleRequest = frames(async (ctx) => {
   return {
-    image: (
-      <span>
-        {ctx.pressedButton
-          ? `I clicked ${ctx.searchParams.value}`
-          : `Click some button`}
-      </span>
-    ),
+    image: <span>Select a topic</span>,
     buttons: [
-      <Button action="post" target={{ query: { value: "Yes" } }}>
-        Say Yes
+      <Button
+        action="post"
+        target={{
+          pathname: "/zodiac-selection/birth-year",
+          query: { value: TopicEnum.LOVE },
+        }}
+      >
+        Love
       </Button>,
-      <Button action="post" target={{ query: { value: "No" } }}>
-        Say No
+      <Button
+        action="post"
+        target={{
+          pathname: "/zodiac-selection/birth-year",
+          query: { value: TopicEnum.MONEY },
+        }}
+      >
+        Money
+      </Button>,
+      <Button
+        action="post"
+        target={{
+          pathname: "/zodiac-selection/birth-year",
+          query: { value: TopicEnum.HEALTH },
+        }}
+      >
+        Health
       </Button>,
     ],
   };
