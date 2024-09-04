@@ -33,12 +33,14 @@ export const POST = frames(async (ctx) => {
 
   return {
     image: (
-      <div tw="flex">
-        <span>Topic: {getTopicText(currentState.topic)}. </span>
-        <span>Enter your birth year: </span>
+      <div tw="flex flex-col" style={{ fontFamily: "UTM Azuki" }}>
+        <div tw="flex justify-center">
+          Topic: {getTopicText(currentState.topic)}.{" "}
+        </div>
+        <div tw="flex justify-center">Enter your birth year: </div>
       </div>
     ), // foo: bar
-    inputText: "foo",
+    textInput: "Enter your birth year (eg: 1884)",
     buttons: [
       <Button action="post" target="/qiuqian-fortune">
         Confirm

@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "@langchain/core": "^0.2.31",
-    "frame-test-ui": "file:",
+    "@langchain/openai": "^0.2.8",
+    "@xmtp/frames-validator": "^0.6.2",
+    "dayjs": "^1.11.13",
     "frames.js": "^0.19.0",
+    "langchain": "^0.2.17",
+    "lodash": "^4.17.21",
     "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

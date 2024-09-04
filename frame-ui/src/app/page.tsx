@@ -2,9 +2,7 @@ import { fetchMetadata } from "frames.js/next";
 
 export async function generateMetadata() {
   return {
-    title: "Demo Page",
-    isOpenFrame: true,
-    accepts: { xmtp: "vNext" },
+    title: "Quiqian Fortune Draw",
     // provide a full URL to your /frames endpoint
     other: await fetchMetadata(
       new URL(

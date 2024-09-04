@@ -2,16 +2,12 @@ import { ChatOpenAI } from "@langchain/openai";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "langchain/output_parsers";
+import { TopicEnum } from "../frames/constants";
 
-export enum LotTopic {
-  Love = "Love",
-  Money = "Money",
-  Health = "Health",
-}
 
 export const generateQiuqianLot = async (
   birthYear: number,
-  topic: LotTopic
+  topic: TopicEnum
 ) => {
   // - Current Relationship Metrics with the Oracle: ${dialog.metrics}
   const prompt = `
