@@ -49,7 +49,7 @@ II. Output: Generate a Qiuqian lot (represented by a numbered bamboo stick)  and
     luckyTokens:
       "If lot type is 上籤, the user receives a random number of Lucky tokens (from 10 to 100), otherwise 0",
     prompt:
-      "Generate a detailed prompt as input for Dall-E to generate an illustration for this lot (with number & user's zodiac sign)",
+      "Generate a detailed prompt as input for Dall-E to generate an illustration for this lot (the image must include lot number & user's zodiac sign)",
   });
 
   const prompts = ChatPromptTemplate.fromMessages([
