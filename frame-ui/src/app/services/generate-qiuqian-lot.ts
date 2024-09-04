@@ -22,8 +22,8 @@ I. Input: User will provide the following information
   3. Current year: 2024 (Year of Dragon) by default.
 
 II. Output: Generate a Qiuqian lot (represented by a numbered bamboo stick)  and return following information in JSON format
-  1. zodiac: User's zodiac sign
-  2. lot_number
+  1. zodiac: User's zodiac sign based on user's birth year.
+  2. lot_number: the lot number
   3. lot_type: 上籤, 中籤 or下籤
   4. lot_content: Provide full original traditional content in Chinese corresponding to the lot number.
   5. Interpretation (in English): The system interprets the Qiuqian message based on the user's Chinese Zodiac sign, incorporating the Five Elements and Yin-Yang theory, and also the current date based on the Chinese calendar. The interpretation should include insights relevant to the selected topic.
