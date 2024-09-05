@@ -1,3 +1,5 @@
+"use server";
+
 import { DallEAPIWrapper } from "@langchain/openai";
 
 export const generateDallEImage = async (prompt: string) => {

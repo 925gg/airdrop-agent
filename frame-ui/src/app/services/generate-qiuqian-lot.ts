@@ -1,9 +1,10 @@
+"use server";
+
 import { ChatOpenAI } from "@langchain/openai";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { TopicEnum } from "../frames/constants";
-
 
 export const generateQiuqianLot = async (
   birthYear: number,
