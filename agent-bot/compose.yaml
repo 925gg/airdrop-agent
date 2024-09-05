@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    image: thinhtran3588/airdrop-agent
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    platform: linux/amd64
