@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import express from "express";
+
 dotenv.config();
 
 import { run, HandlerContext } from "@xmtp/message-kit";
@@ -12,6 +14,18 @@ let clientInitialized = false;
 if (process.env.AGENT_ENABLED !== "true") {
   console.log("Agent is disabled. Exiting...");
 } else {
+  const PORT = process.env.PORT || 8080;
+  const server = express();
+
+  server.get("/", (_, res) => {
+    res.send("I'm alive!");
+  });
+  server.listen(
+    {
+      port: PORT,
+    },
+    () => console.log(`Express is up & running.`)
+  );
   run(async (context: HandlerContext) => {
     const {
       v2client,
