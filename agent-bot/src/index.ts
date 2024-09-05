@@ -17,7 +17,7 @@ if (process.env.AGENT_ENABLED !== "true") {
   const PORT = process.env.PORT || 8080;
   const server = express();
 
-  server.get("/", (_, res) => {
+  server.get("/", (_: any, res: any) => {
     res.send("I'm alive!");
   });
   server.listen(
@@ -27,50 +27,60 @@ if (process.env.AGENT_ENABLED !== "true") {
     () => console.log(`Express is up & running.`)
   );
   run(async (context: HandlerContext) => {
-    const {
-      v2client,
-      message: {
-        content: { content: text },
-        typeId,
-        sender,
-      },
-    } = context;
+    try {
+      const {
+        v2client,
+        message: {
+          content: { content: text },
+          typeId,
+          sender,
+        },
+      } = context;
 
-    if (!clientInitialized) {
-      clientInitialized = true;
-    }
-    if (typeId !== "text") {
-      /* If the input is not text do nothing */
-      return;
-    }
-
-    const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
-    let message = "";
-    if (cacheStep === 0) {
-      message = "Welcome! Choose an option:\n1. Play game 1\n2. Play game 2";
-      // Move to the next step
-      inMemoryCacheStep.set(sender.address, cacheStep + 1);
-      await context.reply(message);
-    } else if (cacheStep === 1) {
-      if (text === "1") {
-        message = "https://frame-ui-437988073971.us-central1.run.app/";
-        inMemoryCacheStep.set(sender.address, 0);
-        //Send the message
-        await context.reply(message);
-      } else if (text === "2") {
-        message = "https://frame-ui-airdrop-437988073971.us-central1.run.app/";
-        inMemoryCacheStep.set(sender.address, 0);
-        //Send the message
-        await context.reply(message);
-      } else {
-        message = "Invalid option. Please choose 1 or 2";
-        // Keep the same step to allow for re-entry
+      if (!clientInitialized) {
+        clientInitialized = true;
       }
-    } else {
-      message = "Invalid option. Please start again.";
-      inMemoryCacheStep.set(sender.address, 0);
-      //Send the message
-      await context.reply(message);
+      if (typeId !== "text") {
+        /* If the input is not text do nothing */
+        return;
+      }
+
+      const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
+      let message = "";
+      console.log("process message");
+      if (cacheStep === 0) {
+        message = "Welcome! Choose an option:\n1. Play game 1\n2. Play game 2";
+        // Move to the next step
+        inMemoryCacheStep.set(sender.address, cacheStep + 1);
+        await context.send(message);
+      } else if (cacheStep === 1) {
+        if (text === "1") {
+          message = "https://frame-ui-437988073971.us-central1.run.app/";
+          inMemoryCacheStep.set(sender.address, 0);
+          //Send the message
+          await context.send(message);
+          console.log("Send game url...");
+        } else if (text === "2") {
+          message =
+            "https://frame-ui-airdrop-437988073971.us-central1.run.app/";
+          inMemoryCacheStep.set(sender.address, 0);
+          //Send the message
+          await context.send(message);
+          console.log("Send airdrop game url...");
+        } else {
+          message = "Invalid option. Please choose 1 or 2";
+          // Keep the same step to allow for re-entry
+          await context.send(message);
+        }
+      } else {
+        message = "Invalid option. Please start again.";
+        inMemoryCacheStep.set(sender.address, 0);
+        //Send the message
+        await context.send(message);
+      }
+    } catch (error) {
+      console.error(error);
+      await context.send(`There's something wrong. Please try again later.`);
     }
   }, {});
 }
