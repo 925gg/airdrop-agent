@@ -31,6 +31,32 @@ export const POST = frames(async (ctx) => {
       break;
   }
 
+  const AIRDROP_STRATEGY = process.env.AIRDROP_STRATEGY;
+  console.log("🚀 ~ POST ~ AIRDROP_STRATEGY:", AIRDROP_STRATEGY)
+
+  if (AIRDROP_STRATEGY === "user-claim") {
+    return {
+      image: (
+        <div tw="flex flex-col" style={{ fontFamily: "UTM Azuki" }}>
+          <div tw="flex justify-center">
+            Topic: {getTopicText(currentState.topic)}.{" "}
+          </div>
+          <div tw="flex justify-center">Enter your birth year: </div>
+        </div>
+      ), // foo: bar
+      textInput: "Enter your birth year (eg: 1884)",
+      buttons: [
+        <Button action="post" target="/qiuqian-fortune-user-claim">
+          Confirm
+        </Button>,
+        <Button action="post" target="/">
+          Back
+        </Button>,
+      ],
+      state: currentState,
+    };
+  }
+  // for server airdrop , we route user to another page
   return {
     image: (
       <div tw="flex flex-col" style={{ fontFamily: "UTM Azuki" }}>
@@ -42,7 +68,7 @@ export const POST = frames(async (ctx) => {
     ), // foo: bar
     textInput: "Enter your birth year (eg: 1884)",
     buttons: [
-      <Button action="post" target="/qiuqian-fortune">
+      <Button action="post" target="/qiuqian-fortune-server-airdrop">
         Confirm
       </Button>,
       <Button action="post" target="/">
