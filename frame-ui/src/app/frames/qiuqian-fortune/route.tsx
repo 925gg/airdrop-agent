@@ -37,7 +37,7 @@ const handleRequest = frames(async (ctx) => {
     ctx.state.topic as TopicEnum
   );
 
-  const dallEImageUrl = await generateDallEImage(result.prompt);
+  // const dallEImageUrl = await generateDallEImage(result.prompt);
 
   console.log("🚀 ~ handleRequest ~ result:", JSON.stringify(result));
 
@@ -47,7 +47,7 @@ const handleRequest = frames(async (ctx) => {
         <div
           tw="flex flex-col w-screen h-screen"
           style={{
-            backgroundImage: `url(${dallEImageUrl})`,
+            // backgroundImage: `url(${dallEImageUrl})`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -104,7 +104,7 @@ const handleRequest = frames(async (ctx) => {
       <div
         tw="flex flex-col w-screen h-screen"
         style={{
-          backgroundImage: `url(${dallEImageUrl})`,
+          // backgroundImage: `url(${dallEImageUrl})`,
           backgroundSize: "100% 100%",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
