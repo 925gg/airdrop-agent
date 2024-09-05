@@ -1,21 +1,12 @@
-import { getRedisClient } from "./lib/redis.js";
+import dotenv from "dotenv";
+dotenv.config();
+
 import { run, HandlerContext } from "@xmtp/message-kit";
-import { startCron } from "./lib/cron.js";
-import {
-  RedisClientType,
-  RedisModules,
-  RedisFunctions,
-  RedisScripts,
-} from "@redis/client";
+import { airdropRewards } from "./lib/airdrop-rewards-new";
 
-//Tracks conversation steps
+// Tracks conversation steps
+// Should save this to a database in a real-world scenario
 const inMemoryCacheStep = new Map<string, number>();
-
-//List of words to stop or unsubscribe.
-const stopWords = ["stop", "unsubscribe", "cancel", "list"];
-
-const redisClient: RedisClientType<RedisModules, RedisFunctions, RedisScripts> =
-  await getRedisClient();
 
 let clientInitialized = false;
 run(async (context: HandlerContext) => {
@@ -29,7 +20,6 @@ run(async (context: HandlerContext) => {
   } = context;
 
   if (!clientInitialized) {
-    startCron(redisClient, v2client);
     clientInitialized = true;
   }
   if (typeId !== "text") {
@@ -37,41 +27,29 @@ run(async (context: HandlerContext) => {
     return;
   }
 
-  const lowerContent = text?.toLowerCase();
-
-  //Handles unsubscribe and resets step
-  if (stopWords.some((word) => lowerContent.includes(word))) {
-    inMemoryCacheStep.set(sender.address, 0);
-    await redisClient.del(sender.address);
-    await context.reply(
-      "You are now unsubscribed. You will no longer receive updates!.",
-    );
-  }
-
   const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
   let message = "";
   if (cacheStep === 0) {
-    message = "Welcome! Choose an option:\n1. Info\n2. Subscribe";
+    message = "Welcome! Choose an option:\n1. Play game\n2. Airdrop";
     // Move to the next step
     inMemoryCacheStep.set(sender.address, cacheStep + 1);
+    await context.reply(message);
   } else if (cacheStep === 1) {
     if (text === "1") {
-      message = "Here is the info.";
+      message = "Played game";
     } else if (text === "2") {
-      await redisClient.set(sender.address, "subscribed"); //test
-      message =
-        "You are now subscribed. You will receive updates.\n\ntype 'stop' to unsubscribe";
+      console.log(`Sending airdrop to ${sender.address}`);
+      await airdropRewards(context);
       //reset the app to the initial step
       inMemoryCacheStep.set(sender.address, 0);
     } else {
-      message = "Invalid option. Please choose 1 for Info or 2 to Subscribe.";
+      message = "Invalid option. Please choose 1 or 2";
       // Keep the same step to allow for re-entry
     }
   } else {
     message = "Invalid option. Please start again.";
     inMemoryCacheStep.set(sender.address, 0);
+    //Send the message
+    await context.reply(message);
   }
-
-  //Send the message
-  await context.reply(message);
-});
+}, {});
