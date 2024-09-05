@@ -39,7 +39,9 @@ if (process.env.AGENT_ENABLED !== "true") {
       await context.reply(message);
     } else if (cacheStep === 1) {
       if (text === "1") {
-        message = "Played game";
+        message = "https://frame-ui-437988073971.us-central1.run.app/";
+        //Send the message
+        await context.reply(message);
       } else if (text === "2") {
         console.log(`Sending airdrop to ${sender.address}`);
         await airdropRewards(context);
