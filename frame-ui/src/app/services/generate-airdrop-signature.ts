@@ -13,7 +13,7 @@ export const generateSignature = async (
   const hash = keccak256(toUtf8Bytes(message));
 
   const verifier = new Wallet(
-    process.env.CHIBI_BATTLE_ITEM_MINT_FROM_CHEST_PRIVATE_KE ?? ""
+    process.env.CHIBI_BATTLE_ITEM_MINT_FROM_CHEST_PRIVATE_KEY ?? ""
   );
   const signature = await verifier.signMessage(getBytes(hash));
   return { signature, expiredAt };

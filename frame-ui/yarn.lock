@@ -248,7 +248,7 @@
   resolved "https://registry.npmjs.org/@noble/hashes/-/hashes-1.4.0.tgz"
   integrity sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==
 
-"@noble/hashes@1.5.0", "@noble/hashes@^1.4.0":
+"@noble/hashes@1.5.0", "@noble/hashes@^1.4.0", "@noble/hashes@~1.5.0":
   version "1.5.0"
   resolved "https://registry.npmjs.org/@noble/hashes/-/hashes-1.5.0.tgz"
   integrity sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA==
@@ -347,7 +347,7 @@
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.10.4.tgz"
   integrity sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==
 
-"@scure/base@~1.1.6":
+"@scure/base@~1.1.6", "@scure/base@~1.1.8":
   version "1.1.8"
   resolved "https://registry.npmjs.org/@scure/base/-/base-1.1.8.tgz"
   integrity sha512-6CyAclxj3Nb0XT7GHK6K4zK6k2xJm6E4Ft0Ohjt4WgegiFUHEtFb2CGzmPmGBwoIhrLsqNLYfLr04Y1GePrzZg==
@@ -368,6 +368,14 @@
   dependencies:
     "@noble/hashes" "~1.4.0"
     "@scure/base" "~1.1.6"
+
+"@scure/bip39@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@scure/bip39/-/bip39-1.4.0.tgz#664d4f851564e2e1d4bffa0339f9546ea55960a6"
+  integrity sha512-BEEm6p8IueV/ZTfQLp/0vhw4NPnT9oWf5+28nvmeUICjP99f4vr2d+qc7AVGDDtwRep6ifR43Yed9ERVmiITzw==
+  dependencies:
+    "@noble/hashes" "~1.5.0"
+    "@scure/base" "~1.1.8"
 
 "@shuding/opentype.js@1.4.0-beta.0":
   version "1.4.0-beta.0"
@@ -3511,6 +3519,21 @@ viem@^2.16.5, viem@^2.7.8:
     "@noble/hashes" "1.4.0"
     "@scure/bip32" "1.4.0"
     "@scure/bip39" "1.3.0"
+    abitype "1.0.5"
+    isows "1.0.4"
+    webauthn-p256 "0.0.5"
+    ws "8.17.1"
+
+viem@^2.21.2:
+  version "2.21.2"
+  resolved "https://registry.yarnpkg.com/viem/-/viem-2.21.2.tgz#8e6cae0babd12edee745e551b437d9e38985a97f"
+  integrity sha512-gTzwKbmyepEDUBKXs3GslTcg5KXfDIgQfHKNxIV9cs7Xout55F8NvHhNeBGBfuw1Ix4Vz8aCMFGYwX5a64CGFg==
+  dependencies:
+    "@adraffy/ens-normalize" "1.10.0"
+    "@noble/curves" "1.4.0"
+    "@noble/hashes" "1.4.0"
+    "@scure/bip32" "1.4.0"
+    "@scure/bip39" "1.4.0"
     abitype "1.0.5"
     isows "1.0.4"
     webauthn-p256 "0.0.5"

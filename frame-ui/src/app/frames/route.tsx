@@ -6,13 +6,6 @@ import { getRemainingDraws } from "../services/fortune-draw";
 import { getXmtpFrameMessage } from "frames.js/xmtp";
 
 const handleRequest = frames(async (ctx) => {
-  let currentWallet: string | undefined;
-
-  if (ctx.message) {
-    const wallet = await ctx.message.walletAddress();
-    currentWallet = wallet ?? "anonymous";
-    console.log("🚀 ~ handleRequest ~ currentWallet:", currentWallet);
-  }
   const remainingDraws = await getRemainingDraws();
 
   if (!remainingDraws) {
@@ -28,7 +21,10 @@ const handleRequest = frames(async (ctx) => {
 
   return {
     image: (
-      <div tw="flex flex-col w-screen h-screen justify-center items-center" style={{ fontFamily: "UTM Azuki" }}>
+      <div
+        tw="flex flex-col w-screen h-screen justify-center items-center"
+        style={{ fontFamily: "UTM Azuki" }}
+      >
         <div tw="w-full flex justify-center items-center text-4xl font-bold text-center">
           Select a Topic
         </div>

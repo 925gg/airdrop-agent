@@ -41,7 +41,7 @@ const handleRequest = frames(async (ctx) => {
 
   console.log("🚀 ~ handleRequest ~ result:", JSON.stringify(result));
 
-  if (!!result.luckyTokens) {
+  if (+result.luckScore >= 4) {
     return {
       image: (
         <div
@@ -81,19 +81,21 @@ const handleRequest = frames(async (ctx) => {
                 textShadow,
               }}
             >
-              Lucky Tokens: {result.luckyTokens}
+              Lucky Score: {result.luckScore}
             </div>
           </div>
         </div>
       ),
       buttons: [
         <Button
-          action="post"
+          action="tx"
           target={{
-            pathname: "/",
+            pathname: "/tx-airdrop",
+            query: { score: result.luckScore },
           }}
+          post_url="/claim-airdrop-success"
         >
-          Draw Again
+          Claim Airdrop
         </Button>,
       ],
     };
