@@ -54,10 +54,12 @@ if (process.env.AGENT_ENABLED !== "true") {
     } else if (cacheStep === 1) {
       if (text === "1") {
         message = "https://frame-ui-437988073971.us-central1.run.app/";
+        inMemoryCacheStep.set(sender.address, 0);
         //Send the message
         await context.reply(message);
       } else if (text === "2") {
         message = "https://frame-ui-airdrop-437988073971.us-central1.run.app/";
+        inMemoryCacheStep.set(sender.address, 0);
         //Send the message
         await context.reply(message);
       } else {
