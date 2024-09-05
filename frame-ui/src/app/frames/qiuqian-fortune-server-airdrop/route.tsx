@@ -90,7 +90,7 @@ const handleRequest = frames(async (ctx) => {
         <Button
           action="tx"
           target={{
-            pathname: "/tx-airdrop",
+            pathname: "/tx-server-airdrop",
             query: { score: result.luckScore },
           }}
           post_url="/claim-airdrop-success"
