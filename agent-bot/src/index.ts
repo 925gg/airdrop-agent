@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { run, HandlerContext } from "@xmtp/message-kit";
-import { airdropRewards } from "./lib/airdrop-rewards-new";
+import { airdropRewards } from "./lib/airdrop-rewards.js";
 
 // Tracks conversation steps
 // Should save this to a database in a real-world scenario
