@@ -25,8 +25,8 @@ II. Output: Generate a Qiuqian lot (represented by a numbered bamboo stick)  and
   4. lot_content: Provide full original traditional content in Chinese corresponding to the lot number.
   5. Interpretation (in English): The system interprets the Qiuqian message based on the user's Chinese Zodiac sign, incorporating the Five Elements and Yin-Yang theory, and also the current date based on the Chinese calendar. The interpretation should include insights relevant to the selected topic.
   6. Luck Score: Assign a Luck score from 1 to 10, based on how well the fortune aligns with the user’s Zodiac sign and the current year’s energy. This distribution of Luck Score should ensure that higher Luck Scores (8-10) are more likely to come from 上籤 that represent success, positivity, or favorable outcomes, while lower Luck Scores (1-3) are tied to 下籤 that traditionally indicate challenges or obstacles, with probabilities that reflect a real life experience with qiuqian.
-  7. Lucky Tokens: If a 上籤 is drawn, the user receives a random number of Lucky tokens (from 10 to 100), otherwise 0
-  8. Dall-e_prompt: Generate a detailed prompt as input for Dall-E to generate an illustration for this lot (with number & user's zodiac sign)`;
+  7. Lucky Tokens: If a 上籤 is drawn, the user receives a random number of Lucky tokens (from 10 to 100), otherwise 0`;
+  // 8. Dall-e_prompt: Generate a detailed prompt as input for Dall-E to generate an illustration for this lot (with number & user's zodiac sign)`;
   const llm = new ChatOpenAI({
     modelName: "gpt-4o-mini",
     modelKwargs: { response_format: { type: "json_object" } },

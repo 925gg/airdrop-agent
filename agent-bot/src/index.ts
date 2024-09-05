@@ -47,7 +47,7 @@ if (process.env.AGENT_ENABLED !== "true") {
     const cacheStep = inMemoryCacheStep.get(sender.address) || 0;
     let message = "";
     if (cacheStep === 0) {
-      message = "Welcome! Choose an option:\n1. Play game\n2. Airdrop";
+      message = "Welcome! Choose an option:\n1. Play game 1\n2. Play game 2";
       // Move to the next step
       inMemoryCacheStep.set(sender.address, cacheStep + 1);
       await context.reply(message);
@@ -57,10 +57,9 @@ if (process.env.AGENT_ENABLED !== "true") {
         //Send the message
         await context.reply(message);
       } else if (text === "2") {
-        console.log(`Sending airdrop to ${sender.address}`);
-        await airdropRewards(context);
-        //reset the app to the initial step
-        inMemoryCacheStep.set(sender.address, 0);
+        message = "https://frame-ui-airdrop-437988073971.us-central1.run.app/";
+        //Send the message
+        await context.reply(message);
       } else {
         message = "Invalid option. Please choose 1 or 2";
         // Keep the same step to allow for re-entry
