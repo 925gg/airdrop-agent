@@ -3,7 +3,7 @@
 import { ethers } from "ethers";
 import dayjs from "dayjs";
 import { backOff } from "exponential-backoff";
-import { ChibiBattleItem__factory } from "./contracts";
+import { ChibiBattleItemForAirdrop__factory } from "./contracts";
 
 const getBufferedGasLimit = (estimatedGas: bigint): bigint => {
   const threshold = 1.5;
@@ -20,7 +20,7 @@ export const airdropChests = async (
     process.env.CHIBI_BATTLE_ITEM_MINT_FROM_CHEST_PRIVATE_KEY as string,
     baseProvider
   );
-  const minter = ChibiBattleItem__factory.connect(
+  const minter = ChibiBattleItemForAirdrop__factory.connect(
     process.env.CONTRACT_BATTLE_ITEM_ADDRESS as string,
     airdropWallet
   );

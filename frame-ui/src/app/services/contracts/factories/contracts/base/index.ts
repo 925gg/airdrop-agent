@@ -9,4 +9,5 @@ export { ClashStaking__factory } from "./ClashStaking__factory";
 export { ClashToken__factory } from "./ClashToken__factory";
 export { Vesting__factory } from "./Vesting__factory";
 export * as chibiKingdomStakingRewardsSol from "./ChibiKingdomStakingRewards.sol";
+export { ChibiBattleItemForAirdrop__factory } from "./ChibiBattleItemForAirdrop__factory";
 

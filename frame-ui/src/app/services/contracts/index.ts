@@ -98,3 +98,5 @@ export type { ClashStaking } from "./contracts/base/ClashStaking";
 export { ClashStaking__factory } from "./factories/contracts/base/ClashStaking__factory";
 export type { ChibiKingdomStakingRewards } from "./contracts/base/ChibiKingdomStakingRewards.sol/ChibiKingdomStakingRewards";
 export { ChibiKingdomStakingRewards__factory } from "./factories/contracts/base/ChibiKingdomStakingRewards.sol/ChibiKingdomStakingRewards__factory";
+export type { ChibiBattleItemForAirdrop } from "./contracts/base/ChibiBattleItemForAirdrop";
+export { ChibiBattleItemForAirdrop__factory } from "./factories/contracts/base/ChibiBattleItemForAirdrop__factory";

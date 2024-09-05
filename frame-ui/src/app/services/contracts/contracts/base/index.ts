@@ -12,4 +12,5 @@ export type { ClashToken } from "./ClashToken";
 export type { Vesting } from "./Vesting";
 import type * as chibiKingdomStakingRewardsSol from "./ChibiKingdomStakingRewards.sol";
 export type { chibiKingdomStakingRewardsSol };
+export type { ChibiBattleItemForAirdrop } from "./ChibiBattleItemForAirdrop";
 
