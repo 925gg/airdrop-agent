@@ -24,7 +24,7 @@ USER node
 COPY --from=BUILD_IMAGE /app/package.json ./package.json
 COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
 COPY --from=BUILD_IMAGE /app/next-env.d.ts ./next-env.d.ts
-COPY --from=BUILD_IMAGE /app/next.config.js ./next.config.js
+COPY --from=BUILD_IMAGE /app/next.config.mjs ./next.config.mjs
 COPY --from=BUILD_IMAGE /app/public ./public
 COPY --from=BUILD_IMAGE /app/.next ./.next
 COPY --from=BUILD_IMAGE /app/.env ./.env
