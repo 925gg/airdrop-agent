@@ -9,6 +9,7 @@ export type State = {
 
 export const frames = createFrames<State>({
   basePath: "/frames",
+  baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL,
   initialState: {
     topic: undefined,
   },
