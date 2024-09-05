@@ -6,6 +6,7 @@ import { getRemainingDraws } from "../services/fortune-draw";
 import { getXmtpFrameMessage } from "frames.js/xmtp";
 
 const handleRequest = frames(async (ctx) => {
+  console.log("🚀 ~ POST ~ ctx.message.address:", ctx.message?.address);
   const remainingDraws = await getRemainingDraws();
 
   if (!remainingDraws) {

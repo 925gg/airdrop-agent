@@ -24,7 +24,7 @@ export const POST = frames(async (ctx) => {
 
   console.log(`prize = ${JSON.stringify([bronze, silver])}`);
 
-  airdropChests(silver, bronze, ctx.message.address);
+  await airdropChests(silver, bronze, ctx.message.address);
 
   const chainId = `eip155:${process.env.BASE_CHAIN_ID}`;
   // Return transaction data that conforms to the correct type

@@ -18,6 +18,7 @@ const getTopicText = (topic?: TopicEnum) => {
 
 export const POST = frames(async (ctx) => {
   let currentState = ctx.state;
+  console.log("🚀 ~ POST ~ ctx.message.address:", ctx.message?.address);
 
   switch (ctx.searchParams.value) {
     case TopicEnum.LOVE:
@@ -32,7 +33,7 @@ export const POST = frames(async (ctx) => {
   }
 
   const AIRDROP_STRATEGY = process.env.AIRDROP_STRATEGY;
-  console.log("🚀 ~ POST ~ AIRDROP_STRATEGY:", AIRDROP_STRATEGY)
+  console.log("🚀 ~ POST ~ AIRDROP_STRATEGY:", AIRDROP_STRATEGY);
 
   if (AIRDROP_STRATEGY === "user-claim") {
     return {

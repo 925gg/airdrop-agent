@@ -2,9 +2,7 @@
 import { Button } from "frames.js/next";
 import { frames } from "../frames";
 import { TopicEnum } from "../constants";
-import dayjs from "dayjs";
 import { generateQiuqianLot } from "@/app/services/generate-qiuqian-lot";
-import { isInteger } from "lodash/fp";
 import { validateYearInput } from "@/app/services/fortune-draw";
 import { generateDallEImage } from "@/app/services/generate-dalle-image";
 
@@ -88,12 +86,11 @@ const handleRequest = frames(async (ctx) => {
       ),
       buttons: [
         <Button
-          action="tx"
+          action="post"
           target={{
-            pathname: "/tx-server-airdrop",
+            pathname: "/server-airdrop-success",
             query: { score: result.luckScore },
           }}
-          post_url="/claim-airdrop-success"
         >
           Claim Airdrop
         </Button>,
