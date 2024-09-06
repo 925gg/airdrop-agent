@@ -50,13 +50,14 @@ export const airdropChests = async (
           gasLimit: getBufferedGasLimit(estimatedGas),
         }
       );
-      const receipt = await tx.wait();
-      return receipt?.hash;
+      return tx.hash;
+      // const receipt = await tx.wait();
+      // return receipt?.hash;
     },
     {
       delayFirstAttempt: false,
       numOfAttempts: 3,
-      startingDelay: 3000,
+      startingDelay: 0,
     }
   );
 
