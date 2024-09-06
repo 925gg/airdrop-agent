@@ -1,8 +1,27 @@
 import dayjs from "dayjs";
 import { isInteger } from "lodash/fp";
+import { promises as fs } from "fs";
+import utc from "dayjs/plugin/utc";
 
-export const getRemainingDraws = async () => {
-  return 3;
+export const getRemainingDraws = async (wallet?: string) => {
+  if (!wallet) {
+    return 0;
+  }
+
+  const content = await fs.readFile("wallet-usage.json");
+  const usages = JSON.parse(content.toString());
+  dayjs.extend(utc);
+  const today = dayjs.utc().startOf("day").unix();
+  let remaining = 3;
+  if (usages[wallet] && usages[wallet][today]) {
+    remaining = 3 - usages[wallet][today];
+    usages[wallet][today] += 1;
+  } else {
+    usages[wallet] = {};
+    usages[wallet][today] = 1;
+  }
+  await fs.writeFile("wallet-usage.json", JSON.stringify(usages));
+  return remaining;
 };
 
 export const validateYearInput = (year: string) => {

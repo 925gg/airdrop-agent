@@ -7,18 +7,6 @@ import { getXmtpFrameMessage } from "frames.js/xmtp";
 
 const handleRequest = frames(async (ctx) => {
   console.log("🚀 ~ POST ~ ctx.message.address:", ctx.message?.address);
-  const remainingDraws = await getRemainingDraws();
-
-  if (!remainingDraws) {
-    return {
-      image: <span>No remaining draws</span>,
-      buttons: [
-        <Button action="post" target="/">
-          OK
-        </Button>,
-      ],
-    };
-  }
 
   return {
     image: (

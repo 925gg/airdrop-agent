@@ -28,6 +28,7 @@ COPY --from=BUILD_IMAGE /app/next.config.mjs ./next.config.mjs
 COPY --from=BUILD_IMAGE /app/public ./public
 COPY --from=BUILD_IMAGE /app/.next ./.next
 COPY --from=BUILD_IMAGE /app/.env ./.env
+COPY --from=BUILD_IMAGE /app/wallet-usage.json ./wallet-usage.json
 
 # run app
 EXPOSE 3000

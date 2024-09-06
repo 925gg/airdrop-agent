@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import { getRemainingDraws } from "@/app/services/fortune-draw";
 import { TopicEnum } from "../../constants";
 import { frames } from "../../frames";
 import { Button } from "frames.js/next";
@@ -17,6 +18,21 @@ const getTopicText = (topic?: TopicEnum) => {
 };
 
 export const POST = frames(async (ctx) => {
+  const wallet = await ctx.message?.walletAddress();
+  console.log('wallet: ', wallet);
+  const remainingDraws = await getRemainingDraws(await ctx.message?.walletAddress());
+  console.log('remaining draws:', remainingDraws);
+
+  if (remainingDraws <= 0) {
+    return {
+      image: <span>No remaining draws</span>,
+      buttons: [
+        <Button action="post" target="/">
+          OK
+        </Button>,
+      ],
+    };
+  }
   let currentState = ctx.state;
   console.log("🚀 ~ POST ~ ctx.message.address:", ctx.message?.address);
 
