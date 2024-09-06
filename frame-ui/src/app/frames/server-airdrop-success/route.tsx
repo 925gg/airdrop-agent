@@ -5,14 +5,6 @@ import { frames } from "../frames";
 import { get } from "lodash/fp";
 import { getChestAirdrop } from "@/app/services/fortune-draw";
 import { airdropChests } from "@/app/services/airdrop-chests";
-import { ethers } from "ethers";
-import { ChibiBattleItemForAirdrop__factory } from "@/app/services/contracts";
-import dayjs from "dayjs";
-
-const getBufferedGasLimit = (estimatedGas: bigint): bigint => {
-  const threshold = 1.5;
-  return (estimatedGas * BigInt(threshold * 100)) / 100n;
-};
 
 const handleRequest = frames(async (ctx) => {
   if (!get("verifiedWalletAddress", ctx.message)) {
@@ -25,39 +17,10 @@ const handleRequest = frames(async (ctx) => {
 
   console.log(`prize = ${JSON.stringify([bronze, silver])}`);
 
-  // airdropChests(silver, bronze, get("verifiedWalletAddress", ctx.message));
-  const baseProvider = new ethers.JsonRpcProvider(process.env.BASE_RPC_URL);
-  const airdropWallet = new ethers.Wallet(
-    process.env.CHIBI_BATTLE_ITEM_MINT_FROM_CHEST_PRIVATE_KEY as string,
-    baseProvider
-  );
-  const minter = ChibiBattleItemForAirdrop__factory.connect(
-    process.env.CONTRACT_BATTLE_ITEM_ADDRESS as string,
-    airdropWallet
-  );
-
-  const transactionId = 1e10 + dayjs().unix();
-  const estimatedGas = await minter.mintFromChests.estimateGas(
-    transactionId,
-    0,
-    get("verifiedWalletAddress", ctx.message),
-    bronze,
+  const txHash = await airdropChests(
     silver,
-    0,
-    0
-  );
-
-  const tx = await minter.mintFromChests(
-    transactionId,
-    0,
-    get("verifiedWalletAddress", ctx.message),
     bronze,
-    silver,
-    0,
-    0,
-    {
-      gasLimit: getBufferedGasLimit(estimatedGas),
-    }
+    get("verifiedWalletAddress", ctx.message)
   );
 
   return {
@@ -74,7 +37,7 @@ const handleRequest = frames(async (ctx) => {
     buttons: [
       <Button
         action="link"
-        target={`${process.env.BASE_EXPLORER_URL}/tx/${tx.hash}`}
+        target={`${process.env.BASE_EXPLORER_URL}/tx/${txHash}`}
       >
         View on Explorer
       </Button>,
