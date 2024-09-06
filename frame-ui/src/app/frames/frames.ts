@@ -31,7 +31,7 @@ export const frames = createFrames<State>({
       },
     }),
     farcasterHubContext({
-      hubHttpUrl: "https://nemes.farcaster.xyz:2281",
+      hubHttpUrl: "https://api.noderpc.xyz/farcaster-mainnet-hub",
     }),
   ],
 });

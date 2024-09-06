@@ -11,13 +11,12 @@ const handleRequest = frames(async (ctx) => {
     throw new Error("Error with message");
   }
 
-  let wallet = get("verifiedWalletAddress", ctx.message);
-  if (!wallet) {
-    console.log(
-      "🚀 ~ cant retrieve verifiedWalletAddress, try to use ctx.message.walletAddress"
-    );
-    wallet = await ctx.message.walletAddress();
-    console.log("🚀 ~ handleRequest ~ wallet:", wallet);
+  const wallet = await ctx.message.walletAddress();
+  if (wallet) {
+    console.log(wallet);
+  } else {
+    console.log("Wallet not found");
+    throw new Error("No wallet found");
   }
 
   const luckScore = +ctx.searchParams.score;
@@ -29,7 +28,7 @@ const handleRequest = frames(async (ctx) => {
   const txHash = await airdropChests(
     silver,
     bronze,
-    get("verifiedWalletAddress", ctx.message)
+    wallet,
   );
 
   return {
