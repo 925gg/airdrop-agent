@@ -2,9 +2,10 @@
 import { Button } from "frames.js/next";
 import { getXmtpFrameMessage } from "frames.js/xmtp";
 import { frames } from "../frames";
+import { get } from "lodash/fp";
 
 const handleRequest = frames(async (ctx) => {
-  let currentWallet: string | undefined;
+  const txId = ctx.message?.transactionId;
 
   return {
     image: (
@@ -18,12 +19,10 @@ const handleRequest = frames(async (ctx) => {
       </div>
     ),
     buttons: [
-      <Button
-        action="post"
-        target={{
-          pathname: "/",
-        }}
-      >
+      <Button action="link" target={`${process.env.BASE_EXPLORER_URL}/tx/${txId}`}>
+        View on Explorer
+      </Button>,
+      <Button action="post" target={{ pathname: "/" }}>
         Draw Again
       </Button>,
     ],
