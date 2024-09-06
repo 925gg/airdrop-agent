@@ -7,8 +7,17 @@ import { getChestAirdrop } from "@/app/services/fortune-draw";
 import { airdropChests } from "@/app/services/airdrop-chests";
 
 const handleRequest = frames(async (ctx) => {
-  if (!get("verifiedWalletAddress", ctx.message)) {
-    throw new Error("Please connect your wallet");
+  if (!ctx.message) {
+    throw new Error("Error with message");
+  }
+
+  let wallet = get("verifiedWalletAddress", ctx.message);
+  if (!wallet) {
+    console.log(
+      "🚀 ~ cant retrieve verifiedWalletAddress, try to use ctx.message.walletAddress"
+    );
+    wallet = await ctx.message.walletAddress();
+    console.log("🚀 ~ handleRequest ~ wallet:", wallet);
   }
 
   const luckScore = +ctx.searchParams.score;
