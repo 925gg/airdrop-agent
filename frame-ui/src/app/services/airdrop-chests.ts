@@ -2,7 +2,6 @@
 
 import { ethers } from "ethers";
 import dayjs from "dayjs";
-import { backOff } from "exponential-backoff";
 import { ChibiBattleItemForAirdrop__factory } from "./contracts";
 
 const getBufferedGasLimit = (estimatedGas: bigint): bigint => {
@@ -36,30 +35,17 @@ export const airdropChests = async (
     0
   );
 
-  const transactionHash = await backOff(
-    async () => {
-      const tx = await minter.mintFromChests(
-        transactionId,
-        0,
-        wallet,
-        bronze,
-        silver,
-        0,
-        0,
-        {
-          gasLimit: getBufferedGasLimit(estimatedGas),
-        }
-      );
-      return tx.hash;
-      // const receipt = await tx.wait();
-      // return receipt?.hash;
-    },
+  const tx = await minter.mintFromChests(
+    transactionId,
+    0,
+    wallet,
+    bronze,
+    silver,
+    0,
+    0,
     {
-      delayFirstAttempt: false,
-      numOfAttempts: 3,
-      startingDelay: 0,
+      gasLimit: getBufferedGasLimit(estimatedGas),
     }
   );
-
-  return transactionHash;
+  return tx.hash;
 };
