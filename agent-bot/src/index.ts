@@ -49,7 +49,8 @@ if (process.env.AGENT_ENABLED !== "true") {
       let message = "";
       console.log("process message");
       if (cacheStep === 0) {
-        message = "Welcome! Choose an option:\n1. Play game 1\n2. Play game 2";
+        message =
+          "Welcome to the Chinese Astrology Fortune-Telling! Please select an option:\n1. You sign a transaction to claim reward.\n2. We send reward to your wallet.";
         // Move to the next step
         inMemoryCacheStep.set(sender.address, cacheStep + 1);
         await context.send(message);
