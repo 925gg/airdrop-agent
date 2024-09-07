@@ -63,8 +63,16 @@ const handleRequest = frames(async (ctx) => {
                 textShadow,
               }}
             >
-              {result.lotType}
+              {result.lotNumber}
             </div>
+            {/* <div
+              tw="flex justify-center w-full text-center font-bold text-[42px] relative"
+              style={{
+                textShadow,
+              }}
+            >
+              {result.lotType}
+            </div> */}
             <div
               tw="flex justify-center w-full text-center text-[32px] relative"
               style={{
@@ -94,6 +102,14 @@ const handleRequest = frames(async (ctx) => {
         >
           Claim Airdrop
         </Button>,
+        <Button
+          action="post"
+          target={{
+            pathname: "/",
+          }}
+        >
+          Try Again
+        </Button>,
       ],
     };
   }
@@ -121,8 +137,16 @@ const handleRequest = frames(async (ctx) => {
               textShadow,
             }}
           >
-            {result.lotType}
+            {result.lotNumber}
           </div>
+          {/* <div
+            tw="flex justify-center w-full text-center font-bold text-[42px] relative"
+            style={{
+              textShadow,
+            }}
+          >
+            {result.lotType}
+          </div> */}
           <div
             tw="flex justify-center w-full text-center text-[32px] relative"
             style={{
@@ -141,7 +165,7 @@ const handleRequest = frames(async (ctx) => {
           pathname: "/",
         }}
       >
-        Draw Again
+        Try Again
       </Button>,
     ],
   };

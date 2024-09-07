@@ -43,7 +43,7 @@ const handleRequest = frames(async (ctx) => {
         View on Explorer
       </Button>,
       <Button action="post" target={{ pathname: "/" }}>
-        Draw Again
+        Try Again
       </Button>,
     ],
   };

@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
 import { TopicEnum } from "./constants";
-import { getRemainingDraws, textShadow } from "../services/fortune-draw";
-import { getXmtpFrameMessage } from "frames.js/xmtp";
+import { textShadow } from "../services/fortune-draw";
 
 const handleRequest = frames(async (ctx) => {
   console.log("🚀 ~ POST ~ ctx.message.address:", ctx.message?.address);
@@ -30,7 +30,10 @@ const handleRequest = frames(async (ctx) => {
               textShadow,
             }}
           >
-            Select a Topic
+            Welcome to the Chinese Astrology Fortune-Telling experience! This
+            journey will offer you insights and guidance based on ancient
+            traditions. Let's begin by choosing the aspect of your life you'd
+            like to explore:
           </div>
         </div>
       </div>
