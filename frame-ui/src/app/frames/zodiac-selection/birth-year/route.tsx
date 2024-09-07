@@ -21,7 +21,7 @@ export const POST = frames(async (ctx) => {
   const wallet = await ctx.message?.walletAddress();
   console.log("wallet: ", wallet);
   const remainingDraws = await getRemainingDraws(
-    await ctx.message?.walletAddress()
+    (await ctx.message?.walletAddress())?.toLocaleLowerCase()
   );
   // const remainingDraws = 999;
   console.log("remaining draws:", remainingDraws);
