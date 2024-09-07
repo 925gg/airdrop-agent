@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { getRemainingDraws } from "@/app/services/fortune-draw";
+import { getRemainingDraws, textShadow } from "@/app/services/fortune-draw";
 import { TopicEnum } from "../../constants";
 import { frames } from "../../frames";
 import { Button } from "frames.js/next";
@@ -19,13 +19,34 @@ const getTopicText = (topic?: TopicEnum) => {
 
 export const POST = frames(async (ctx) => {
   const wallet = await ctx.message?.walletAddress();
-  console.log('wallet: ', wallet);
-  const remainingDraws = await getRemainingDraws(await ctx.message?.walletAddress());
-  console.log('remaining draws:', remainingDraws);
+  console.log("wallet: ", wallet);
+  const remainingDraws = await getRemainingDraws(
+    await ctx.message?.walletAddress()
+  );
+  // const remainingDraws = 999;
+  console.log("remaining draws:", remainingDraws);
 
   if (remainingDraws <= 0) {
     return {
-      image: <span>No remaining draws</span>,
+      image: (
+        <div
+          tw="flex flex-col"
+          style={{
+            fontFamily: "'UTM Azuki'",
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/cover-art.jpeg)`,
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div
+            tw="flex flex-col w-full h-full justify-center items-center px-[24px] py-[16px]"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          >
+            <span>No remaining draws</span>
+          </div>
+        </div>
+      ),
       buttons: [
         <Button action="post" target="/">
           OK
@@ -54,11 +75,37 @@ export const POST = frames(async (ctx) => {
   if (AIRDROP_STRATEGY === "user-claim") {
     return {
       image: (
-        <div tw="flex flex-col" style={{ fontFamily: "UTM Azuki" }}>
-          <div tw="flex justify-center">
-            Topic: {getTopicText(currentState.topic)}.{" "}
+        <div
+          tw="flex flex-col w-screen h-screen"
+          style={{
+            fontFamily: "'UTM Azuki'",
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/cover-art.jpeg)`,
+            backgroundSize: "100% 100%",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div
+            tw="flex flex-col w-full h-full justify-center items-center px-[24px] py-[16px]"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          >
+            <div
+              tw="flex justify-center"
+              style={{
+                textShadow,
+              }}
+            >
+              Topic: {getTopicText(currentState.topic)}.{" "}
+            </div>
+            <div
+              tw="flex justify-center"
+              style={{
+                textShadow,
+              }}
+            >
+              Enter your birth year:{" "}
+            </div>
           </div>
-          <div tw="flex justify-center">Enter your birth year: </div>
         </div>
       ), // foo: bar
       textInput: "Enter your birth year (eg: 1884)",
@@ -76,11 +123,37 @@ export const POST = frames(async (ctx) => {
   // for server airdrop , we route user to another page
   return {
     image: (
-      <div tw="flex flex-col" style={{ fontFamily: "UTM Azuki" }}>
-        <div tw="flex justify-center">
-          Topic: {getTopicText(currentState.topic)}.{" "}
+      <div
+        tw="flex flex-col w-screen h-screen"
+        style={{
+          fontFamily: "'UTM Azuki'",
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/cover-art.jpeg)`,
+          backgroundSize: "100% 100%",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div
+          tw="flex flex-col w-full h-full justify-center items-center px-[24px] py-[16px]"
+          style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+        >
+          <div
+            tw="flex justify-center"
+            style={{
+              textShadow,
+            }}
+          >
+            Topic: {getTopicText(currentState.topic)}.{" "}
+          </div>
+          <div
+            tw="flex justify-center"
+            style={{
+              textShadow,
+            }}
+          >
+            Enter your birth year:{" "}
+          </div>
         </div>
-        <div tw="flex justify-center">Enter your birth year: </div>
       </div>
     ), // foo: bar
     textInput: "Enter your birth year (eg: 1884)",

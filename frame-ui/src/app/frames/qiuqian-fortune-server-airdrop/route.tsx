@@ -35,7 +35,7 @@ const handleRequest = frames(async (ctx) => {
     ctx.state.topic as TopicEnum
   );
 
-  // const dallEImageUrl = await generateDallEImage(result.prompt);
+  const imageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/images/${result.lotNumber}.png`;
 
   console.log("🚀 ~ handleRequest ~ result:", JSON.stringify(result));
 
@@ -45,16 +45,16 @@ const handleRequest = frames(async (ctx) => {
         <div
           tw="flex flex-col w-screen h-screen"
           style={{
-            // backgroundImage: `url(${dallEImageUrl})`,
+            backgroundImage: `url(${imageUrl})`,
             backgroundSize: "100% 100%",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            fontFamily: "UTM Azuki",
+            fontFamily: "'UTM Azuki'",
             color: "#000",
           }}
         >
           <div
-            tw="flex flex-col w-full h-full  px-[24px] py-[16px]"
+            tw="flex flex-col w-full h-full justify-center items-center px-[24px] py-[16px]"
             style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
           >
             <div
@@ -103,11 +103,11 @@ const handleRequest = frames(async (ctx) => {
       <div
         tw="flex flex-col w-screen h-screen"
         style={{
-          // backgroundImage: `url(${dallEImageUrl})`,
+          backgroundImage: `url(${imageUrl})`,
           backgroundSize: "100% 100%",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          fontFamily: "UTM Azuki",
+          fontFamily: "'UTM Azuki'",
           color: "#000",
         }}
       >

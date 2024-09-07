@@ -52,3 +52,6 @@ export const getChestAirdrop = (luckScore: number): [number, number] => {
   }
   return [0, 0];
 };
+
+
+export const textShadow = "#fff 0px 0px 6px";
